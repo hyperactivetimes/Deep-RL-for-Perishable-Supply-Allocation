@@ -170,7 +170,7 @@ class Distribution_Center:
     
 class Environment():
     
-    def __init__(self,fulfil_reward,shortage_cost , wastage_cost,excess_penalty,service_reward, initial_shelf_life, HSdist=["gamma","gamma"],HSdistparams=[(18.03,20.1),(20.16,14.1 )],DCdist=["normal"],DCdistparams=[(55.34,4.20)],DC_number = 1,HS_number = 2,max_episode_length=120):
+    def __init__(self,fulfil_reward,shortage_cost , wastage_cost,excess_penalty,service_reward, initial_shelf_life, HSdist=["normal","normal"],HSdistparams=[(18.03,20.1),(20.16,14.1 )],DCdist=["normal"],DCdistparams=[(55.34,4.20)],DC_number = 1,HS_number = 2,max_episode_length=120):
         self.state=[]
         self.reward = 0
         self.HS_number = HS_number
@@ -729,12 +729,12 @@ def plot_running_avg_of_demand(s1,s2):
 
 '''defining the envs'''
 initial_shelf_life = 30
-env = Environment(fulfil_reward =3, shortage_cost=2, wastage_cost=1,excess_penalty=7,service_reward=0,initial_shelf_life=initial_shelf_life)
+env = Environment(fulfil_reward =0.2, shortage_cost=2, wastage_cost=1,excess_penalty=1,service_reward=0,initial_shelf_life=initial_shelf_life)
 ft = FeatureTransformer()
 D = 2+3+(3*initial_shelf_life)
-pmodel1 = PolicyModel(D,ft,[17,12,6])
-pmodel2 = PolicyModel(D,ft,[17,12,6])
-vmodel = ValueModel(D,ft,[17,12,8])
+pmodel1 = PolicyModel(D,ft,[40,40,40])
+pmodel2 = PolicyModel(D,ft,[40,40,40])
+vmodel = ValueModel(D,ft,[40,40,40])
 init = tf.global_variables_initializer()
 session = tf.InteractiveSession()
 session.run(init)
